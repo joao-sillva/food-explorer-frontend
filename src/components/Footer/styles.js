@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 export const Container = styled.footer`
+  grid-area: footer;
   width: 100%;
   height: 77px;
   padding: 24px 123px;
 
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0;
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
 `
 

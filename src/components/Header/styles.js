@@ -31,7 +31,6 @@ export const Search = styled.div`
   padding: 12px 14px;
   border-radius: 5px;
   flex-grow: 1;
-
   background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
 
   > svg {
@@ -40,6 +39,14 @@ export const Search = styled.div`
 
   input {
     max-width: 282px;
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  &:focus-within {
+    border: 1px solid ${({ theme }) => theme.COLORS.WHITE};
   }
 `
 export const Logout = styled.div`

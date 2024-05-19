@@ -5,10 +5,10 @@ export const Container = styled.div`
   align-items: center;
 
   background: ${({ theme, isNew }) => isNew ? 'transparent' : theme.COLORS.GRAY_400};
-  border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : 'none'};
+  outline: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY_300}` : 'none'};
 
-  margin: 0 16px 8px 0;
-  padding: 0 16px 0 0; 
+  margin-right: 8px;
+  padding-right: 16px; 
   border-radius: 8px;
 
   > button {
