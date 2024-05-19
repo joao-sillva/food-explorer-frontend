@@ -5,6 +5,11 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.WHITE};
   
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  
   border: none;
   border-radius: 5px;
   padding: 12px 32px;
