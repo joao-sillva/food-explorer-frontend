@@ -1,7 +1,8 @@
 import { Container, Title, Order } from './styles'
-import { FiHeart, FiMinus, FiPlus } from 'react-icons/fi'
+import { FiHeart } from 'react-icons/fi'
 import { RxCaretRight } from 'react-icons/rx'
 import { BiPencil } from 'react-icons/bi'
+import { useMediaQuery } from 'react-responsive';
 
 import { NumberPicker } from '../NumberPicker'
 import { Button } from '../Button'
@@ -9,28 +10,29 @@ import { Button } from '../Button'
 import theme from '../../styles/theme'
 
 export function Food({ data, isAdmin, isChecked, ...rest }) {
-  const fillFiHeart = <FiHeart fill={theme.COLORS.GRAY_200} />
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const fillFiHeart = <FiHeart size={24} fill={theme.COLORS.GRAY_200} />;
   
   return (
     <Container {...rest}>
       { isAdmin
-        ? <BiPencil />
+        ? <BiPencil size={24} />
         : isChecked
         ? fillFiHeart
-        : <FiHeart />
+        : <FiHeart size={24} />
       }
 
-      <img src={data.src} alt="Imagem do prato de comida" />
+      <img src={data.src} alt='Imagem do prato de comida' />
 
       <Title>
         <h2>{data.title}</h2>
-        <RxCaretRight />
+        <RxCaretRight size={isDesktop ? '24px' : '14'} />
       </Title>
 
-      <p>{data.description}</p>
+      {isDesktop && <p>{data.description}</p>}
       <span>R$ {data.price}</span>
 
-      { isAdmin &&
+      { !isAdmin &&
         <Order>
           <NumberPicker />
           <Button title='Incluir' />
