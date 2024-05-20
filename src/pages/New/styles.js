@@ -4,28 +4,19 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: 96px auto 77px;
+  grid-template-rows: 114px auto 77px;
   grid-template-areas: 'header' 'content' 'footer';
 
   > main {
     grid-area: content;
-    overflow-y: auto;
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
-      border-radius: 8px;
-    }
+    justify-self: center;
   }
 
   .tags {
     background: ${({ theme }) => theme.COLORS.BACKGROUND_600};
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 16px;
     
     padding: 8px;
     border-radius: 8px;
@@ -33,6 +24,7 @@ export const Container = styled.div`
     &:focus-within {
       outline: 1px solid ${({ theme }) => theme.COLORS.WHITE};
     }
+
     input {
       background-color: transparent;
     }
@@ -47,19 +39,19 @@ export const Container = styled.div`
 
   .buttons {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    gap: 32px;
     
     > button {
       padding: 12px 24px;
     }
    
     .delete {
-      max-width: 135px;
+      max-width: 160px;
       background: ${({ theme }) => theme.COLORS.BACKGROUND_600};
     }
    
     .save {
-      max-width: 172px;
    
       &:disabled {
         opacity: 1;
@@ -67,11 +59,43 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media (min-width: 1024px) {
+    height: 100vh;
+    grid-template-rows: 96px auto 77px;
+    
+    > main {
+      width: 100%;
+      overflow-y: auto;
+   
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+   
+      ::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+        border-radius: 8px;
+      }
+    }
+   
+    .buttons {
+      justify-content: flex-end;
+   
+      .delete {
+        max-width: 135px;
+      }
+   
+      .save {
+        max-width: 172px;
+      }
+    }
+  }
 `
 
 export const Form = styled.form`
-  max-width: 1120px;
-  margin: 40px auto 116px;
+  max-width: 364px;
+  margin: 11px auto 53px;
+  margin-inline: max(32px, calc((100% - 364px) / 2));
 
   display: flex;
   flex-direction: column;
@@ -92,7 +116,8 @@ export const Form = styled.form`
   
   > div {
     display: flex;
-    gap: 32px;
+    flex-direction: column;
+    gap: 24px;
   
     section {
       width: 100%;
@@ -102,28 +127,40 @@ export const Form = styled.form`
       background: ${({ theme }) => theme.COLORS.BACKGROUND_600};
       border-radius: 8px;
     }
+  }
 
-    :first-of-type {
-      section:nth-of-type(1) {
-        max-width: 229px;
-      }
+  @media (min-width: 1024px) {
+    max-width: 1120px;
+    margin: 40px auto 116px;
+    margin-inline: max(124px, calc((100% - 1120px) / 2));
+    gap: 32px;
+
+    > div {
+      flex-direction: row;
+      gap: 32px;
       
-      section:nth-of-type(2) {
-        max-width: 463px;
+      :first-of-type {
+        section:nth-of-type(1) {
+          max-width: 229px;
+        }
+        
+        section:nth-of-type(2) {
+          max-width: 463px;
+        }
+
+        section:nth-of-type(3) {
+          max-width: 364px;
+        }
       }
     
-      section:nth-of-type(3) {
-        max-width: 364px;
-      }
-    }
-    
-    :nth-of-type(2) {
-      section:nth-of-type(1) {
-        max-width: 837px;
-      }
-      
-      section:nth-of-type(2) {
-        max-width: 251px;
+      :nth-of-type(2) {
+        section:nth-of-type(1) {
+          max-width: 837px;
+        }
+        
+        section:nth-of-type(2) {
+          max-width: 251px;
+        }
       }
     }
   }
@@ -146,11 +183,6 @@ export const Image = styled.div`
     gap: 8px;
     cursor: pointer;
   
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  
     span {
       font-family: 'Poppins', sans-serif;
       font-size: 14px;
@@ -158,7 +190,7 @@ export const Image = styled.div`
     }
     
     input {
-      max-width: 229px;
+      width: 100%;
       position: absolute;
       right: 0;
       z-index: -1;  
@@ -172,6 +204,12 @@ export const Image = styled.div`
       svg, span {
         filter: brightness(0.9);
       }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    input {
+      max-width: 229px;
     }
   }
 `
@@ -196,8 +234,6 @@ export const Category = styled.div`
     }
     
     svg {
-      width: 24px;
-      height: 24px;
       color: ${({ theme }) => theme.COLORS.GRAY_100};
       
       position: absolute;
