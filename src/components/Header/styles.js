@@ -4,49 +4,65 @@ export const Container = styled.header`
   grid-area: header;
 
   width: 100%;
-  height: 96px;
-  padding: 24px 123px;
+  height: 114px;
+  padding: 56px 28px 24px;
   display: flex;
-  gap: 32px;
-
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
 
-  > button:first-of-type {
-    max-width: 216px;
+  button:last-child {
+    width: auto;
+    background: none;
+  }
+  
+  @media (min-width: 1024px) {
+    height: 96px;
+    padding: 24px 123px;
+    justify-content: space-between;
+    gap: 32px;
+    
+    > button:first-of-type {
+      max-width: 216px;
+    }
+  }
+`
+
+export const Menu = styled.button`
+  background: none;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  
+  .fi-menu-icon {
+    width: 24px;
+    height: 18px;
+  }
+  
+  span {
+    font-size: 21px;
   }
 `
 
 export const Brand = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   > img {
-    width: 197px;
-    height: 39px;
-  }
-`
-
-export const Search = styled.div`
-  display: flex;
-  padding: 12px 14px;
-  border-radius: 5px;
-  flex-grow: 1;
-  background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
-
-  > svg {
-    color: ${({ theme }) => theme.COLORS.GRAY_100};
+    width: 160px;
+    height: 26px;
   }
 
-  input {
-    max-width: 282px;
+  @media (min-width: 1024px) {
+    width: auto;
 
-    &:focus {
-      border: none;
+    > img {
+      width: 197px;
+      height: 39px;
     }
-  }
-
-  &:focus-within {
-    border: 1px solid ${({ theme }) => theme.COLORS.WHITE};
   }
 `
 export const Logout = styled.div`
@@ -56,9 +72,4 @@ export const Logout = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.COLORS.WHITE};
-
-  > svg {
-    width: 32px;
-    height: 32px;
-  }
 `
