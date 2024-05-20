@@ -93,7 +93,6 @@ export function Home({ isAdmin }) {
                 slides-per-view="auto"
                 navigation={isDesktop ? "true" : "false"}
                 loop="true"
-                autoplay="true"
                 grab-cursor="true"
               >
                 <swiper-slide>
@@ -138,7 +137,6 @@ export function Home({ isAdmin }) {
                 slides-per-view="auto"
                 navigation={isDesktop ? "true" : "false"}
                 loop="true"
-                autoplay="true"
                 grab-cursor="true"
               >
                 <swiper-slide>
@@ -183,7 +181,6 @@ export function Home({ isAdmin }) {
                 slides-per-view="auto"
                 navigation={isDesktop ? "true" : "false"}
                 loop="true"
-                autoplay="true"
                 grab-cursor="true"
               >
                 <swiper-slide>

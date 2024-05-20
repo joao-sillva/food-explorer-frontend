@@ -2,36 +2,43 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   height: 100vh;
-  margin-inline: 6.5rem 4.7rem;
+  margin-inline: 5.6rem;
   
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    margin-inline: 13.1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `
 
 export const Brand = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: center;
   margin-inline: auto;
 
-  > svg {
-    width: 27.8rem;
-    height: 4.4rem;
+  > img {
+    width: 100%;
+    max-width: 27.8rem;
   }
 
   @media (min-width: 1024px) {
+    justify-content: initial;
     margin-inline: 0;
     
-    > svg {
-      width: 32.4rem;
+    > img {
+      max-width: 32.4rem;
     }
   }
 `
 
 export const Form = styled.form`
   width: 100%;
-  max-width: 31.6rem;
-
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
@@ -58,7 +65,6 @@ export const Form = styled.form`
   }
 
   @media (min-width: 1024px) {
-    min-width: 47.6rem;
     padding: 6.4rem;
     border-radius: 1.6rem;
     background: ${({ theme }) => theme.COLORS.BACKGROUND_700};

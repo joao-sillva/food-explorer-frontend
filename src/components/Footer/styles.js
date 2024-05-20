@@ -8,6 +8,7 @@ export const Container = styled.footer`
 
   display: flex;
   justify-content: space-between;
+  gap: .8rem;
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
 
   @media (min-width: 1024px) {

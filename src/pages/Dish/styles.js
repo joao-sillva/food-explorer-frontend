@@ -11,9 +11,8 @@ export const Container = styled.div`
     justify-self: center;
    
     > div {
-      max-width: 31.6rem;
-      margin: 3.2rem auto 5rem;
-      margin-inline: max(5.6rem, calc((100% - 31.6rem) / 2));
+      width: calc(100% - 11.2rem);
+      margin: 3.2rem 5.6rem 4.9rem;
     }
   }
 
@@ -22,13 +21,6 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     gap: 1.6rem;
-
-    div svg, 
-    div span {
-      font-size: 2.3rem;
-      font-weight: 700;
-      line-height: 160%;
-    }
   }
   
   .edit {
@@ -46,6 +38,17 @@ export const Container = styled.div`
     svg {
       width: 2.2rem;
       height: auto;
+    }
+  }
+
+  @media (min-width: 375px) {
+    .buttons {
+      div svg, 
+      div span {
+        font-size: 2.3rem;
+        font-weight: 700;
+        line-height: 160%;
+      }
     }
   }
 
@@ -67,9 +70,8 @@ export const Container = styled.div`
       }
 
       > div {
-        max-width: 112.4rem;
-        margin: 3.2rem auto 15.5rem;
-        margin-inline: max(12.2rem, calc((100% - 112.4rem) / 2));
+        width: calc(100% - 24.4rem);
+        margin: 3.2rem 12.2rem 15.5rem;
       } 
     }
     
