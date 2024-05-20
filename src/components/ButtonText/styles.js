@@ -7,7 +7,7 @@ export const Container = styled.button`
 
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 140%;
 
   display: flex;
@@ -17,5 +17,9 @@ export const Container = styled.button`
     width: 32px;
     height: 32px;
     color: ${({ theme }) => theme.COLORS.WHITE};
+  }
+
+  @media (min-width: 1024px) {
+    font-weight: 700;
   }
 `
