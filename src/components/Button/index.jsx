@@ -1,7 +1,10 @@
 import { Container } from './styles'
 import { TbReceipt } from 'react-icons/tb'
+import { useMediaQuery } from 'react-responsive'
 
 export function Button({ title, loading = false, isCustomer, ...rest }) {
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
+
   return (
     <Container
       type='button'
@@ -10,7 +13,7 @@ export function Button({ title, loading = false, isCustomer, ...rest }) {
     >
       { isCustomer && <TbReceipt size={32} />}
       { loading ? 'Carregando...' : title }
-      { isCustomer && <span>({rest.orderCount})</span>}
+      {isCustomer && <span>{isDesktop ? `(${rest.orderCount})` : rest.orderCount}</span>}
     </Container>
   )
 }
