@@ -1,23 +1,56 @@
-import { Container } from './styles'
+import { Container, Content } from './styles'
 import { RxCaretLeft } from 'react-icons/rx'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Tag } from '../../components/Tag'
 import { ButtonText } from '../../components/ButtonText'
+import { NumberPicker } from '../../components/NumberPicker'
+import { Button } from '../../components/Button'
 
-export function Dish() {
+export function Dish({ isAdmin }) {
   return (
     <Container>
-      <Header />
+      {isAdmin
+        ? <Header isAdmin />
+        : <Header />
+      }
 
-      <ButtonText>
-        <RxCaretLeft />
-        Voltar
-      </ButtonText>
+      <main>
+        <header>
+          <ButtonText>
+            <RxCaretLeft />
+            Voltar
+          </ButtonText>
+        </header>
 
-      <Tag title="alface" />
-      <Tag title="cebola" />
+        <Content>
+          <img src='../../assets/salada-ravanello.png" alt="Salada Ravanello' />
 
+          <div>
+            <h1>Salada Ravanello</h1>
+            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
+
+            <section>
+              <Tag title='alface' />
+              <Tag title='cebola' />
+              <Tag title='pão naan' />
+              <Tag title='pepino' />
+              <Tag title='rabanete' />
+              <Tag title='tomate' />
+            </section>
+
+            <div className='buttons'>
+              {isAdmin
+                ? <Button title='Editar prato' className='edit' />
+                : <>
+                  <NumberPicker />
+                  <Button title='incluir ∙ R$ 25,00' className='include' />
+                </>
+              }
+            </div>
+          </div>
+        </Content>
+      </main>
       <Footer />
     </Container>
   )
