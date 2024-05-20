@@ -11,15 +11,15 @@ import theme from '../../styles/theme'
 
 export function Food({ data, isAdmin, isChecked, ...rest }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const fillFiHeart = <FiHeart size={24} fill={theme.COLORS.GRAY_200} />;
+  const fillFiHeart = <FiHeart size={'2.4rem'} fill={theme.COLORS.GRAY_200} />;
   
   return (
-    <Container {...rest}>
+    <Container {...rest} isAdmin={isAdmin}>
       { isAdmin
-        ? <BiPencil size={24} />
+        ? <BiPencil size={'2.4rem'} />
         : isChecked
         ? fillFiHeart
-        : <FiHeart size={24} />
+        : <FiHeart size={'2.4rem'} />
       }
 
       <img src={data.src} alt='Imagem do prato de comida' />

@@ -3,15 +3,15 @@ import styled from 'styled-components'
 export const Container = styled.footer`
   grid-area: footer;
   width: 100%;
-  height: 77px;
-  padding: 30px;
+  height: 7.7rem;
+  padding: 3rem;
 
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
 
   @media (min-width: 1024px) {
-    padding: 24px 123px;
+    padding: 2.4rem 12.3rem;
   }
 `
 
@@ -20,14 +20,12 @@ export const Brand = styled.div`
   align-items: center;
 
   > img {
-    width: 142px;
-    height: 18px;
+    width: 14.2rem;
   }
 
   @media (min-width: 1024px) {
     > img {
-      width: 186px;
-      height: 30px;
+      width: 18.6rem;
     }
   }
 `
@@ -36,11 +34,11 @@ export const Copyright = styled.span`
   display: flex;
   align-items: center;
 
-  font-size: 12px;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.COLORS.LIGHT_WHITE};
 
   @media (min-width: 1024px) {
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 160%;
   }
 `

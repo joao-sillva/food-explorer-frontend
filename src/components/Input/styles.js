@@ -7,12 +7,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   
-  border-radius: 5px;
+  border-radius: .5rem;
 
   > input {
     width: 100%;
-    height: 48px;
-    padding: 12px 14px;
+    height: 4.8rem;
+    padding: 1.2rem 1.4rem;
 
     color: ${({ theme}) => theme.COLORS.WHITE};
     background: transparent;

@@ -10,21 +10,21 @@ export const Container = styled.button`
   align-items: center;
   
   border: none;
-  background: none;
-  border-radius: 5px;
+  border-radius: .5rem;
   position: relative;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
 
   > span {
     position: absolute;
-    top: -4px;
-    right: -5.54px;
+    top: -0.4rem;
+    right: -0.6rem;
+
     background: ${({ theme }) => theme.COLORS.DARK_RED};
-    border-radius: 99px;
-    padding-inline: 5px;
+    border-radius: 9.9rem;
+    padding-inline: .6rem;
   }
 
   &:disabled {
@@ -32,8 +32,8 @@ export const Container = styled.button`
   }
 
   @media (min-width: 1024px) {
-    gap: 8px;
-    padding: 12px 32px;
+    gap: .8rem;
+    padding: 1.2rem 3.2rem;
     
     > span {
       position: initial;

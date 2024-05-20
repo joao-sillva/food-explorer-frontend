@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   display: grid;
-  grid-template-rows: 114px auto 77px;
+  grid-template-rows: 11.4rem auto 7.7rem;
   grid-template-areas: 'header' 'content' 'footer';
 
   > main {
@@ -11,108 +11,108 @@ export const Container = styled.div`
     justify-self: center;
    
     > div {
-      max-width: 316px;
-      margin: 32px auto 50px;
-      margin-inline: max(56px, calc((100% - 316px) / 2));
+      max-width: 31.6rem;
+      margin: 3.2rem auto 5rem;
+      margin-inline: max(5.6rem, calc((100% - 31.6rem) / 2));
     }
   }
 
   .buttons {
-    margin-top: 24px;
+    margin-top: 2.4rem;
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 1.6rem;
 
     div svg, 
     div span {
-      font-size: 23px;
+      font-size: 2.3rem;
       font-weight: 700;
       line-height: 160%;
     }
   }
   
   .edit {
-    padding: 12px 24px;
+    padding: 1.2rem 2.4rem;
   }
 
   .include {
-    max-width: 188px;
-    padding: 8px 44px;
-    font-size: 10px;
-    line-height: 16px;
-    border-radius: 3px;
-    gap: 5px;
+    max-width: 18.8rem;
+    padding: .8rem 4.4rem;
+    font-size: 1.0rem;
+    line-height: 1.6rem;
+    border-radius: .3rem;
+    gap: .5rem;
 
     svg {
-      width: 22px;
-      height: 22px;
+      width: 2.2rem;
+      height: auto;
     }
   }
 
   @media (min-width: 1024px) {
     height: 100vh;
-    grid-template-rows: 96px auto 77px;
+    grid-template-rows: 9.6rem auto 7.7rem;
   
     > main {
       width: 100%;
       overflow-y: auto;
   
       ::-webkit-scrollbar {
-        width: 8px;
+        width: .8rem;
       }
   
       ::-webkit-scrollbar-thumb {
         background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
-        border-radius: 8px;
+        border-radius: .8rem;
       }
 
       > div {
-        max-width: 1124px;
-        margin: 32px auto 155px;
-        margin-inline: max(122px, calc((100% - 1124px) / 2));
+        max-width: 112.4rem;
+        margin: 3.2rem auto 15.5rem;
+        margin-inline: max(12.2rem, calc((100% - 112.4rem) / 2));
       } 
     }
     
     .buttons {
       justify-content: initial;
-      gap: 33px;
+      gap: 3.3rem;
     }
     
     .edit {
-      max-width: 131px;
+      max-width: 13.1rem;
     }
     
     .include {
-      max-width: 162px;
-      padding: 12px 24px;
-      font-size: 14px;
-      line-height: 24px;
+      max-width: 16.2rem;
+      padding: 1.2rem 2.4rem;
+      font-size: 1.4rem;
+      line-height: 2.4rem;
     }
   }
 `
 
 export const Content = styled.div`
-  margin-top: 16px;
+  margin-top: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 1.6rem;
   
   > img {
     width: 100%;
-    max-width: 264px;
+    max-width: 26.4rem;
     height: auto;
   }
   
   > div {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 2.4rem;
     text-align: center;
 
     h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 27px;
+      font-size: 2.7rem;
       font-weight: 500;
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.GRAY_200};
@@ -120,7 +120,7 @@ export const Content = styled.div`
 
     p {
       font-family: 'Poppins', sans-serif;
-      font-size: 16px;
+      font-size: 1.6rem;
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.GRAY_200};
     }
@@ -129,33 +129,33 @@ export const Content = styled.div`
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 2.4rem;
     }
   }
 
     @media (min-width: 1024px) {
     flex-direction: row;
-    gap: 47px;
-    margin-top: 42px;
+    gap: 4.7rem;
+    margin-top: 4.2rem;
     
     > img {
-      max-width: 390px;
+      max-width: 39rem;
     }
     
     > div {
       text-align: left;
     
       h1 {
-        font-size: 40px;
+        font-size: 4.0rem;
       }
     
       p {
-        font-size: 24px;
+        font-size: 2.4rem;
       }
     
       section {
         justify-content: initial;
-        gap: 12px;
+        gap: 1.2rem;
       }
     }
   }

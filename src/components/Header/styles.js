@@ -4,8 +4,8 @@ export const Container = styled.header`
   grid-area: header;
 
   width: 100%;
-  height: 114px;
-  padding: 56px 28px 24px;
+  height: 11.4rem;
+  padding: 5.6rem 2.8rem 2.4rem;
   display: flex;
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
 
@@ -15,13 +15,13 @@ export const Container = styled.header`
   }
   
   @media (min-width: 1024px) {
-    height: 96px;
-    padding: 24px 123px;
+    height: 9.6rem;
+    padding: 2.4rem 12.3rem;
     justify-content: space-between;
-    gap: 32px;
+    gap: 3.2rem;
     
     > button:first-of-type {
-      max-width: 216px;
+      max-width: 21.6rem;
     }
   }
 `
@@ -32,16 +32,16 @@ export const Menu = styled.button`
 
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1.6rem;
   color: ${({ theme }) => theme.COLORS.WHITE};
   
   .fi-menu-icon {
-    width: 24px;
-    height: 18px;
+    width: 2.4rem;
+    height: 1.8rem;
   }
   
   span {
-    font-size: 21px;
+    font-size: 2.1rem;
   }
 `
 
@@ -52,19 +52,18 @@ export const Brand = styled.div`
   justify-content: center;
 
   > img {
-    width: 160px;
-    height: 26px;
+    width: 16rem;
   }
 
   @media (min-width: 1024px) {
     width: auto;
 
     > img {
-      width: 197px;
-      height: 39px;
+      width: 19.7rem;
     }
   }
 `
+
 export const Logout = styled.div`
   background: none;
   border: none;
