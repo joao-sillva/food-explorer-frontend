@@ -1,17 +1,24 @@
+import { useMediaQuery } from 'react-responsive'
+import { api } from '../../services/api'
+import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+
 import { Container, Title, Order } from './styles'
 import { FiHeart } from 'react-icons/fi'
 import { RxCaretRight } from 'react-icons/rx'
 import { BiPencil } from 'react-icons/bi'
-import { useMediaQuery } from 'react-responsive'
-import { api } from '../../services/api'
 
 import { NumberPicker } from '../NumberPicker'
 import { Button } from '../Button'
-
 import theme from '../../styles/theme'
 
 export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails, ...rest }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
+
+  const params = useParams()
+  const navigate = useNavigate()
+
+  const [number, setNumber] = useState(1)
 
   const handleFavorite = async () => {
     try {
@@ -24,11 +31,34 @@ export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails,
       console.log('Erro ao atualizar favoritos:', error);
     }
   }
+
+  function handleEdit() {
+    navigate(`/edit/${params.id}`);
+  }
+
+  async function handleInclude() {
+    try {
+      const cartItem = {
+        dish_id: data.id,
+        name: data.name,
+        quantity: number,
+      }
+
+      await api.post('/carts', { cart_items: [cartItem] })
+      alert('Prato adicionado ao carrinho!')
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert('Não foi possível adicionar ao carrinho.')
+      }
+    }
+  }
   
   return (
     <Container {...rest} isAdmin={isAdmin}>
       {isAdmin 
-      ? (<BiPencil size={"2.4rem"} />) 
+      ? (<BiPencil size={"2.4rem"} onClick={handleEdit} />) 
       : (
         <FiHeart
           size={"2.4rem"}
@@ -57,7 +87,7 @@ export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails,
       { !isAdmin &&
         <Order>
           <NumberPicker />
-          <Button title='Incluir' />
+          <Button title='Incluir' onClick={handleInclude} />
         </Order>
       }        
     </Container>
