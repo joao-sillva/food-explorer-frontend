@@ -94,7 +94,11 @@ export function Dish({ isAdmin }) {
                     : <>
                       <NumberPicker />
                       <Button
-                        title={isDesktop ? `incluir ∙ R$ ${data.price}` : `pedir ∙ R$ ${data.price}`}
+                        title={
+                          isDesktop 
+                            ? `incluir ∙ R$ ${(data.price * number).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}` 
+                            : `pedir ∙ R$ ${(data.price * number).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                        } 
                         className="include"
                         isCustomer={!isDesktop}
                       />

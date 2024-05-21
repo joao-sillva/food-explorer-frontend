@@ -158,6 +158,7 @@ export const Image = styled.div`
     cursor: pointer;
   
     span {
+      max-width: calc(100vw - 16rem);
       font-family: 'Poppins', sans-serif;
       font-size: 1.4rem;
       line-height: 2.4rem;
@@ -186,12 +187,14 @@ export const Image = styled.div`
   }
 
   @media (min-width: 1024px) {
-    span {
-      max-width: 13.3rem;
-    }
-    
-    input {
-      max-width: 22.9rem;
+    > label {
+      span {
+        max-width: 13.3rem;
+      }
+
+      input {
+        max-width: 22.9rem;
+      }
     }
   }
 `

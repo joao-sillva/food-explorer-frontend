@@ -56,6 +56,7 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.GRAY_100};
       font-size: 1.4rem;
       line-height: 160%;
+      text-align: center;
       overflow: hidden;
     }
 
@@ -77,7 +78,8 @@ export const Title = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     line-height: 2.4rem;
-
+    text-align: center;
+    
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
