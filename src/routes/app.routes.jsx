@@ -4,13 +4,13 @@ import { Home } from '../pages/Home'
 import { Dish } from '../pages/Dish'
 import { Edit } from '../pages/Edit'
 
-export function AppRoutes() {
+export function AppRoutes({ isAdmin }) {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path="/new" element={<New isNew />} />
-      <Route path="/edit/:id" element={<Edit isAdmin />} />
-      <Route path="/dish/:id" element={<Dish isAdmin />} />
+      <Route path="/" element={<Home isAdmin={isAdmin} />} />
+      <Route path="/new" element={<New isAdmin={isAdmin} />} />
+      <Route path="/edit/:id" element={<Edit isAdmin={isAdmin} />} />
+      <Route path="/dish/:id" element={<Dish isAdmin={isAdmin} />} />
     </Routes>
   )
 }
