@@ -8,7 +8,8 @@ export function Routes() {
 
   return (
     <BrowserRouter>
-      {user ? <AppRoutes /> : <AuthRoutes />}
+      <AppRoutes /> 
     </BrowserRouter>
   )
 }
+//{user ? <AppRoutes /> : <AuthRoutes />}

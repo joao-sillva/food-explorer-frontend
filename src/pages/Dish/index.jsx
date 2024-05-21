@@ -9,11 +9,31 @@ import { Button } from '../../components/Button'
 import { Menu } from '../../components/Menu'
 
 import { useMediaQuery } from 'react-responsive'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { api } from '../../services/api'
 
 export function Dish({ isAdmin }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const [data, setData] = useState(null)
+
+  const params = useParams()
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate("/")
+  }
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`);
+      setData(response.data);
+    }
+
+    fetchDish();
+  }, []);
 
   return (
     <Container>
@@ -23,44 +43,55 @@ export function Dish({ isAdmin }) {
 
       <Header isAdmin={isAdmin} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-      <main>
-        <div>
-          <header>
-            <ButtonText>
-              <RxCaretLeft />
-              Voltar
-            </ButtonText>
-          </header>
+      {data &&
+        <main>
+          <div>
+            <header>
+              <ButtonText>
+                <RxCaretLeft />
+                Voltar
+              </ButtonText>
+            </header>
 
-          <Content>
-            <img src='../../assets/salada-ravanello.png" alt="Salada Ravanello' />
+            <Content>
+              <img src={`${api.defaults.baseURL}/files/${data.image}`} alt={data.name} />
 
-            <div>
-              <h1>Salada Ravanello</h1>
-              <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
+              <div>
+                <h1>{data.name}</h1>
+                <p>{data.description}</p>
 
-              <section>
-                <Tag title='alface' />
-                <Tag title='cebola' />
-                <Tag title='pão naan' />
-                <Tag title='pepino' />
-                <Tag title='rabanete' />
-                <Tag title='tomate' />
-              </section>
-
-              <div className='buttons'>
-                {isAdmin
-                  ? <Button title='Editar prato' className='edit' />
-                  : <>
-                    <NumberPicker />
-                    <Button title='incluir ∙ R$ 25,00' className='include' />
-                  </>
+                {
+                  data.ingredients &&
+                  <section>
+                    {
+                      data.ingredients.map(ingredient => (
+                        <Tag
+                          key={String(ingredient.id)}
+                          title={ingredient.name}
+                        />
+                      ))
+                    }
+                  </section>
                 }
+
+                <div className='buttons'>
+                  {isAdmin
+                    ? <Button title='Editar prato' className='edit' />
+                    : <>
+                      <NumberPicker />
+                      <Button
+                        title={isDesktop ? `incluir ∙ R$ ${data.price}` : `pedir ∙ R$ ${data.price}`}
+                        className="include"
+                        isCustomer={!isDesktop}
+                      />
+                    </>
+                  }
+                </div>
               </div>
-            </div>
-          </Content>
-        </div>
-      </main>
+            </Content>
+          </div>
+        </main>
+      }
       <Footer />
     </Container>
   )
