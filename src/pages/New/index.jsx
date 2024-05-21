@@ -18,7 +18,7 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { Menu } from "../../components/Menu";
 
-export function New({ isNew, isAdmin }) {
+export function New({ isAdmin }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -33,6 +33,10 @@ export function New({ isNew, isAdmin }) {
   const [newTag, setNewTag] = useState('')
 
   const navigate = useNavigate();
+
+  function handleBack() {
+    navigate(-1);
+  }
 
   function handleImageChange(e) {
     const file = e.target.files[0]
@@ -92,7 +96,7 @@ export function New({ isNew, isAdmin }) {
     try {
       await api.post('/dishes', formData);
       alert('Prato cadastrado com sucesso!');
-      navigate('/');
+      navigate(-1);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
@@ -113,12 +117,12 @@ export function New({ isNew, isAdmin }) {
       <main>
         <Form>
           <header>
-            <ButtonText>
+            <ButtonText onClick={handleBack}>
               <RxCaretLeft />
               Voltar
             </ButtonText>
 
-            <h1>{isNew ? "Adicionar prato" : "Editar prato"}</h1>
+            <h1>Adicionar prato</h1>
           </header>
 
           <div>
@@ -207,9 +211,6 @@ export function New({ isNew, isAdmin }) {
           </Section>
 
           <div className='buttons'>
-            {!isNew &&
-              <Button title='Excluir prato' className='delete' />
-            }
             <Button className='save'
               title='Salvar alterações'
               onClick={handleNewDish}
