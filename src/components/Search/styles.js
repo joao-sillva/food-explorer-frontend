@@ -20,6 +20,7 @@ export const Container = styled.div`
     
     &:focus {
       border: none;
+      outline: none;
     }
 
     &:disabled {

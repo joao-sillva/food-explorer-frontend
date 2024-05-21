@@ -131,6 +131,10 @@ export const Content = styled.div`
     color: ${({ theme }) => theme.COLORS.GRAY_200};
     margin-bottom: 2.4rem;
   }
+
+  swiper-container {
+    height: 29.2rem;
+  }
   
   swiper-slide {
     max-width: 21.0rem;
@@ -141,6 +145,10 @@ export const Content = styled.div`
   
     section > h2 {
       font-size: 3,2rem;
+    }
+
+    swiper-container {
+      height: 46.2rem;
     }
 
     swiper-container::before,

@@ -6,6 +6,7 @@ export const Container = styled.div`
   border-radius: .8rem;
 
   max-width: 21rem;
+  height: 29.2rem;
   padding: 2.4rem;
 
   display: flex;
@@ -25,9 +26,10 @@ export const Container = styled.div`
     right: 1.6rem;
   }
 
-  > img {
+  > img { 
     max-width: 8.8rem;
     margin-top: ${({ isAdmin }) => isAdmin ? '4.6rem' : 'none'};
+    cursor: pointer;
   }
 
   > span {
@@ -38,6 +40,7 @@ export const Container = styled.div`
 
   @media (min-width: 1024px) {
     max-width: 30.4rem;
+    height: 46.2rem;
     gap: 1.5rem;
     
     > svg {
@@ -50,9 +53,10 @@ export const Container = styled.div`
     }
     
     > p {
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
       font-size: 1.4rem;
       line-height: 160%;
-      color: ${({ theme }) => theme.COLORS.GRAY_100};
+      overflow: hidden;
     }
 
     > span {
@@ -64,6 +68,7 @@ export const Container = styled.div`
 `
 
 export const Title = styled.div`
+  width: 100%;
   color: ${({ theme }) => theme.COLORS.GRAY_200};
   display: flex;
   align-items: center;
@@ -72,6 +77,11 @@ export const Title = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     line-height: 2.4rem;
+
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media (min-width: 1024px) {
@@ -85,7 +95,7 @@ export const Title = styled.div`
 
 export const Order = styled.div`
   width: 100%;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
