@@ -4,7 +4,14 @@ import { api } from '../services/api'
 export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({})
+
+  function signOut() {
+    localStorage.removeItem("@foodexplorer:token")
+    localStorage.removeItem("@foodexplorer:user")
+
+    setData({})
+  }
 
   async function signIn({ email, password }) {
     try {
@@ -40,7 +47,13 @@ function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        user: data.user,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
