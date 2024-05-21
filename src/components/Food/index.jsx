@@ -12,13 +12,14 @@ import { NumberPicker } from '../NumberPicker'
 import { Button } from '../Button'
 import theme from '../../styles/theme'
 
-export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails, ...rest }) {
+export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails, user_id, ...rest }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
 
   const params = useParams()
   const navigate = useNavigate()
 
   const [number, setNumber] = useState(1)
+  const [cartId, setCartId] = useState(null);
 
   const handleFavorite = async () => {
     try {
@@ -44,52 +45,64 @@ export function Food({ data, isAdmin, isFavorite, updateFavorite, handleDetails,
         quantity: number,
       }
 
-      await api.post('/carts', { cart_items: [cartItem] })
+      const response = await api.get('/carts', { params: { created_by: user_id } })
+      const cart = response.data[0]
+
+      if (cart) {
+        await api.patch(`/carts/${cart.id}`, { cart_items: [cartItem] })
+      } else {
+        const createResponse = await api.post('/carts', { cart_items: [cartItem], created_by: user_id })
+        const createdCart = createResponse.data
+
+        setCartId(createdCart.id)
+      }
+
       alert('Prato adicionado ao carrinho!')
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message)
       } else {
         alert('Não foi possível adicionar ao carrinho.')
+        console.log('Erro ao adicionar ao carrinho:', error)
       }
     }
   }
-  
+
   return (
     <Container {...rest} isAdmin={isAdmin}>
-      {isAdmin 
-      ? (<BiPencil size={"2.4rem"} onClick={handleEdit} />) 
-      : (
-        <FiHeart
-          size={"2.4rem"}
-          fill={isFavorite ? theme.COLORS.GRAY_200 : undefined}
-          onClick={handleFavorite}
-        />
-      )}
+      {isAdmin
+        ? (<BiPencil size={"2.4rem"} onClick={handleEdit} />)
+        : (
+          <FiHeart
+            size={"2.4rem"}
+            fill={isFavorite ? theme.COLORS.GRAY_200 : undefined}
+            onClick={handleFavorite}
+          />
+        )}
 
-      <img 
-        src={`${api.defaults.baseURL}/files/${data.image}`} 
-        alt="Imagem do prato." 
-        onClick={() => handleDetails(data.id)} 
+      <img
+        src={`${api.defaults.baseURL}/files/${data.image}`}
+        alt="Imagem do prato."
+        onClick={() => handleDetails(data.id)}
       />
 
       <Title>
         <h2>{data.name}</h2>
-        <RxCaretRight 
-          size={isDesktop ? "2.4rem" : "1.4rem"} 
-          onClick={() => handleDetails(data.id)} 
+        <RxCaretRight
+          size={isDesktop ? "2.4rem" : "1.4rem"}
+          onClick={() => handleDetails(data.id)}
         />
       </Title>
 
       {isDesktop && <p>{data.description}</p>}
       <span>R$ {data.price}</span>
 
-      { !isAdmin &&
+      {!isAdmin &&
         <Order>
-          <NumberPicker />
+          <NumberPicker number={number} setNumber={setNumber} />
           <Button title='Incluir' onClick={handleInclude} />
         </Order>
-      }        
+      }
     </Container>
   )
 }
