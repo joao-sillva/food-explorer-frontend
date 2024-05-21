@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from '../../hooks/auth'
 
 import { Container, Form, Brand } from './styles'
 import { Button } from '../../components/Button'

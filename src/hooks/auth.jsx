@@ -3,7 +3,7 @@ import { api } from '../services/api'
 
 export const AuthContext = createContext({})
 
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const [data, setData] = useState({});
 
   async function signIn({ email, password }) {
@@ -29,7 +29,9 @@ export function AuthProvider({ children }) {
   )
 }
 
-export function useAuth() {
+function useAuth() {
   const context = useContext(AuthContext)
   return context
 }
+
+export { AuthProvider, useAuth }
