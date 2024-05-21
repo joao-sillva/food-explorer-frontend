@@ -138,7 +138,7 @@ export function Edit({ isAdmin }) {
       await api.patch(`/dishes/${params.id}`, updatedDish);
 
       alert('Prato atualizado com sucesso!');
-      navigate('/');
+      navigate(-1);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
@@ -160,10 +160,20 @@ export function Edit({ isAdmin }) {
   return (
     <Container>
       {!isDesktop &&
-        <Menu isAdmin={isAdmin} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <Menu 
+        isAdmin={isAdmin} 
+        isDisabled={true} 
+        isMenuOpen={isMenuOpen} 
+        setIsMenuOpen={setIsMenuOpen} 
+      />
       }
 
-      <Header isAdmin={isAdmin} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Header 
+        isAdmin={isAdmin} 
+        isDisabled={true} 
+        isMenuOpen={isMenuOpen} 
+        setIsMenuOpen={setIsMenuOpen} 
+      />
 
       <main>
         <Form>

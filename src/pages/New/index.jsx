@@ -109,10 +109,20 @@ export function New({ isAdmin }) {
   return (
     <Container>
       {!isDesktop &&
-        <Menu isAdmin={isAdmin} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <Menu 
+        isAdmin={isAdmin} 
+        isDisabled={true} 
+        isMenuOpen={isMenuOpen} 
+        setIsMenuOpen={setIsMenuOpen} 
+      />
       }
 
-      <Header isAdmin={isAdmin} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Header 
+        isAdmin={isAdmin} 
+        isDisabled={true} 
+        isMenuOpen={isMenuOpen} 
+        setIsMenuOpen={setIsMenuOpen} 
+      />
 
       <main>
         <Form>
