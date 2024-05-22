@@ -14,6 +14,10 @@ export function Menu({ isAdmin, isMenuOpen, setIsMenuOpen, setSearch, isDisabled
     navigate("/new");
   }
 
+  function handleFavorites() {
+    navigate("/favorites");
+  }
+
   function handleSignOut() {
     navigate("/");
     signOut();
@@ -32,6 +36,10 @@ export function Menu({ isAdmin, isMenuOpen, setIsMenuOpen, setSearch, isDisabled
             </ButtonText>
           ) : null
         } 
+
+        <ButtonText onClick={handleFavorites}>
+          Meus favoritos
+        </ButtonText>
 
         <ButtonText onClick={handleSignOut}>
           Sair

@@ -20,6 +20,10 @@ export function Header({ isAdmin, isMenuOpen, setIsMenuOpen, setSearch, isDisabl
   const { signOut } = useAuth()
   const navigate = useNavigate()
 
+  function handleFavorites() {
+    navigate("/favorites");
+  }
+
   function handleNew() {
     navigate("/new");
   }
@@ -51,9 +55,13 @@ export function Header({ isAdmin, isMenuOpen, setIsMenuOpen, setSearch, isDisabl
 
           {isDesktop && <Search setSearch={setSearch} isDisabled={isDisabled} />}
 
+          {isDesktop &&
+            <button className="favorites" onClick={handleFavorites}>Meus favoritos</button>
+          }
+
           {isAdmin 
-            ? (isDesktop && <Button title="Novo prato" onClick={handleNew} />)
-            : <Button title={isDesktop ? "Pedidos" : undefined} isCustomer orderCount={0} />
+            ? (isDesktop && <Button className="new" title="Novo prato" onClick={handleNew} />) 
+            : <Button className="orders" title={isDesktop ? "Pedidos" : undefined} isCustomer orderCount={0} />
           }
 
           {isDesktop &&
