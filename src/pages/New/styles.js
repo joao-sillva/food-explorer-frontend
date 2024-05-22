@@ -208,6 +208,7 @@ export const Category = styled.div`
       padding: 1.2rem 1.6rem;
       border-radius: 0.8rem;
       border: none;
+      -webkit-appearance: none;
       
       font-size: 1.4rem;
       font-weight: 400;
