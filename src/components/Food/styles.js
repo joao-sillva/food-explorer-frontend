@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_200};
-  border-radius: .8rem;
-
+  border-radius: 0.8rem;
+  
   max-width: 21rem;
   height: 29.2rem;
   padding: 2.4rem;
@@ -26,7 +26,7 @@ export const Container = styled.div`
     right: 1.6rem;
   }
 
-  > img { 
+  > img {
     max-width: 8.8rem;
     margin-top: ${({ isAdmin }) => isAdmin ? '4.6rem' : 'none'};
     cursor: pointer;
@@ -34,7 +34,7 @@ export const Container = styled.div`
 
   > span {
     line-height: 100%;
-    color: ${({ theme }) => theme.COLORS.GRAY_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_BLUE};
     margin-bottom: ${({ isAdmin }) => isAdmin ? '4.6rem' : 'none'};
   }
 
@@ -42,11 +42,11 @@ export const Container = styled.div`
     max-width: 30.4rem;
     height: 46.2rem;
     gap: 1.5rem;
-    
+
     > svg {
       right: 1.8rem;
     }
-    
+
     > img {
       max-width: 17.6rem;
       margin-top: ${({ isAdmin }) => isAdmin ? '3.2rem' : 'none'};
@@ -70,17 +70,18 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.COLORS.GRAY_200};
   display: flex;
   align-items: center;
-
+  color: ${({ theme }) => theme.COLORS.GRAY_200};
+  
   > h2 {
+    width: 100%;
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
+    font-weight: 500;
     line-height: 2.4rem;
     text-align: center;
     
-    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -96,8 +97,7 @@ export const Title = styled.div`
 `
 
 export const Order = styled.div`
-  width: 100%;
-
+  width: 100%; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,13 +106,13 @@ export const Order = styled.div`
   > button {
     padding: 0.4rem 2.4rem;
   }
-  
+
   @media (min-width: 1024px) {
     width: fit-content;
     flex-direction: row;
-  }
 
-  > button {
+    > button {
       padding: 1.2rem 2.4rem;
     }
+  }
 `

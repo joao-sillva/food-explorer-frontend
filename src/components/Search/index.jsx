@@ -8,7 +8,7 @@ export function Search({ setSearch, isDisabled  }) {
       <Input
         placeholder='Busque por pratos ou ingredientes'
         icon={FiSearch}
-        disabled={isDisabled}s
+        disabled={isDisabled}
         onChange={(e) => setSearch(e.target.value)}
       />
     </Container>

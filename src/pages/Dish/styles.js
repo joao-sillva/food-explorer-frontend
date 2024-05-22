@@ -3,14 +3,15 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
+
   display: grid;
   grid-template-rows: 11.4rem auto 7.7rem;
-  grid-template-areas: 'header' 'content' 'footer';
+  grid-template-areas: 'header''content''footer';
 
   > main {
     grid-area: content;
     justify-self: center;
-   
+
     > div {
       width: calc(100% - 11.2rem);
       margin: 3.2rem 5.6rem 4.9rem;
@@ -18,26 +19,26 @@ export const Container = styled.div`
   }
 
   .buttons {
-    margin-top: 2.4rem;
     display: flex;
     justify-content: center;
     gap: 1.6rem;
+    margin-top: 2.4rem;
   }
-  
+
   .edit {
     padding: 1.2rem 2.4rem;
   }
 
   .include {
-    max-width: fit-content;
-    padding: .8rem 4.4rem;
-    font-size: 1.0rem;
+    max-width: 18.8rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.6rem;
-    border-radius: .3rem;
-    gap: .5rem;
+    border-radius: 0.3rem;
+    gap: 0.5rem;
 
     svg {
-      width: 2.2rem;
+      width: 2.2rem; 
       height: auto;
     }
   }
@@ -56,18 +57,18 @@ export const Container = styled.div`
   @media (min-width: 1024px) {
     height: 100vh;
     grid-template-rows: 9.6rem auto 7.7rem;
-  
+
     > main {
       width: 100%;
       overflow-y: auto;
-  
+
       ::-webkit-scrollbar {
-        width: .8rem;
+        width: 0.8rem;
       }
-  
+
       ::-webkit-scrollbar-thumb {
         background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
-        border-radius: .8rem;
+        border-radius: 0.8rem;
       }
 
       > div {
@@ -75,38 +76,37 @@ export const Container = styled.div`
         margin: 3.2rem 12.2rem 15.5rem;
       } 
     }
-    
+
     .buttons {
       justify-content: initial;
       gap: 3.3rem;
     }
-    
+
     .edit {
       max-width: 13.1rem;
     }
-    
+
     .include {
-      max-width: 16.2rem;
+      max-width: fit-content;
       padding: 1.2rem 2.4rem;
       font-size: 1.4rem;
       line-height: 2.4rem;
     }
   }
-`
+`;
 
 export const Content = styled.div`
-  margin-top: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.6rem;
-  
+  margin-top: 1.6rem;
+
   > img {
     width: 100%;
     max-width: 26.4rem;
-    height: auto;
   }
-  
+
   > div {
     display: flex;
     flex-direction: column;
@@ -123,7 +123,6 @@ export const Content = styled.div`
 
     p {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.6rem;
       line-height: 140%;
       color: ${({ theme }) => theme.COLORS.GRAY_200};
     }
@@ -136,26 +135,26 @@ export const Content = styled.div`
     }
   }
 
-    @media (min-width: 1024px) {
+  @media (min-width: 1024px) {
     flex-direction: row;
     gap: 4.7rem;
     margin-top: 4.2rem;
-    
+
     > img {
       max-width: 39rem;
     }
-    
+
     > div {
       text-align: left;
-    
+
       h1 {
-        font-size: 4.0rem;
+        font-size: 4rem;
       }
-    
+
       p {
         font-size: 2.4rem;
       }
-    
+
       section {
         justify-content: initial;
         gap: 1.2rem;

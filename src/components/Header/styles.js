@@ -1,14 +1,13 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.header`
   grid-area: header;
-
   width: 100%;
   height: 11.4rem;
   padding: 5.6rem 2.8rem 2.4rem;
-  display: flex;
   background: ${({ theme }) => theme.COLORS.BACKGROUND_300};
-
+  display: flex;
+  
   button:last-child {
     width: auto;
     padding: 0;
@@ -22,10 +21,10 @@ export const Container = styled.header`
     gap: 3.2rem;
 
     .favorites {
-      border: 0;
-      background: none;
-      line-height: 100%;
       color: ${({ theme }) => theme.COLORS.GRAY_200};
+      background: none;
+      border: 0;
+      line-height: 100%;
     }
     
     .new, .orders {
@@ -37,17 +36,16 @@ export const Container = styled.header`
 export const Menu = styled.button`
   background: none;
   border: none;
-
   display: flex;
   align-items: center;
   gap: 1.6rem;
   color: ${({ theme }) => theme.COLORS.WHITE};
-  
+
   .fi-menu-icon {
     width: 2.4rem;
     height: 1.8rem;
   }
-  
+
   span {
     font-size: 2.1rem;
   }
@@ -60,7 +58,7 @@ export const Brand = styled.div`
   justify-content: center;
 
   > img {
-    width: 16rem;
+    width: 16.1rem;
   }
 
   @media (min-width: 1024px) {
@@ -72,10 +70,9 @@ export const Brand = styled.div`
   }
 `
 
-export const Logout = styled.div`
+export const Logout = styled.button`
   background: none;
   border: none;
-
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.COLORS.WHITE};

@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../../hooks/auth'
+import { Link } from 'react-router-dom'
 
 import { Container, Form, Brand } from './styles'
-import { Button } from '../../components/Button'
-import { Input } from '../../components/Input'
 import { Section } from '../../components/Section'
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
 
 import brand from '../../assets/brand.svg'
 
@@ -18,35 +18,34 @@ export function SignIn() {
 
   function handleSignIn() {
     setLoading(true)
-
     signIn({ email, password }).finally(() => setLoading(false))
   }
-  
+
   return (
     <Container>
       <Brand>
-        <img src={brand} alt="Logo Food Explorer" />
+        <img src={brand} alt='Logo' />
       </Brand>
 
       <Form>
         <h2>Faça seu login</h2>
 
         <Section title='Email'>
-          <Input
-            type='text' 
-            placeholder='Exemplo: exemplo@exemplo.com.br'
+          <Input 
+            placeholder='Exemplo: exemplo@exemplo.com.br' 
+            type='text'
             onChange={e => setEmail(e.target.value)}
           />
         </Section>
 
         <Section title='Senha'>
-          <Input
-            type='password' 
-            placeholder='No mínimo 6 caracteres'
+          <Input 
+            placeholder='No mínimo 6 caracteres' 
+            type='password'
             onChange={e => setPassword(e.target.value)}
           />
         </Section>
-  
+
         <Button title='Entrar' onClick={handleSignIn} loading={loading} />
 
         <Link to='/register'>

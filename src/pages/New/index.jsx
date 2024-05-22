@@ -1,42 +1,43 @@
-import { Container, Form, Image, Category } from './styles'
-import { FiUpload } from 'react-icons/fi'
-import { RxCaretLeft } from 'react-icons/rx'
-import { RiArrowDownSLine } from 'react-icons/ri'
-
 import { useState } from 'react'
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from 'react-responsive'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../services/api'
 
+import { RxCaretLeft } from 'react-icons/rx'
+import { FiUpload } from 'react-icons/fi'
+import { RiArrowDownSLine } from 'react-icons/ri'
+
+import { Container, Form, Image, Category } from './styles'
+import { Menu } from '../../components/Menu'
 import { Header } from '../../components/Header'
-import { Textarea } from '../../components/Textarea'
-import { Section } from '../../components/Section'
-import { FoodItem } from '../../components/FoodItem'
-import { Footer } from '../../components/Footer'
 import { ButtonText } from '../../components/ButtonText'
+import { Section } from '../../components/Section'
 import { Input } from '../../components/Input'
+import { FoodItem } from '../../components/FoodItem'
+import { Textarea } from '../../components/Textarea'
 import { Button } from '../../components/Button'
-import { Menu } from "../../components/Menu";
+import { Footer } from '../../components/Footer'
 
 export function New({ isAdmin }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState('')
+	const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
   const [price, setPrice] = useState('')
-  const [image, setImage] = useState(null);
+
+  const [image, setImage] = useState(null)
   const [fileName, setFileName] = useState('')
 
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function handleBack() {
-    navigate(-1);
+    navigate(-1)
   }
 
   function handleImageChange(e) {
@@ -47,7 +48,7 @@ export function New({ isAdmin }) {
 
   function handleAddTag() {
     setTags((prevState) => [...prevState, newTag])
-    setNewTag("")
+    setNewTag('')
   }
 
   function handleRemoveTag(deleted) {
@@ -56,70 +57,69 @@ export function New({ isAdmin }) {
 
   async function handleNewDish() {
     if (!image) {
-      return alert('Selecione a imagem do prato.');
+      return alert('Selecione a imagem do prato.')
     }
 
     if (!name) {
-      return alert('Digite o nome do prato.');
+      return alert('Digite o nome do prato.')
     }
 
     if (!category) {
-      return alert('Selecione a categoria do prato.');
+      return alert('Selecione a categoria do prato.')
     }
 
     if (tags.length === 0) {
-      return alert('Informe pelo menos um ingrediente do prato.');
+      return alert('Informe pelo menos um ingrediente do prato.')
     }
 
     if (newTag) {
       return alert(
         'Você deixou um ingrediente no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.'
-      );
+      )
     }
 
     if (!price) {
-      return alert('Digite o preço do prato.');
+      return alert('Digite o preço do prato.')
     }
 
     if (!description) {
-      return alert('Digite a descrição do prato.');
+      return alert('Digite a descrição do prato.')
     }
 
     setLoading(true)
-
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('name', name);
-    formData.append('category', category);
-    formData.append('price', price);
-    formData.append('description', description);
-
-    formData.append('ingredients', JSON.stringify(tags));
+    
+		const formData = new FormData()
+    formData.append('image', image)
+    formData.append('name', name)
+    formData.append('category', category)
+    formData.append('price', price)
+    formData.append('description', description)
+    formData.append('ingredients', JSON.stringify(tags))
 
     try {
-      await api.post('/dishes', formData);
-      alert('Prato cadastrado com sucesso!');
-      navigate(-1);
+      await api.post('/dishes', formData)
+      alert('Prato cadastrado com sucesso!')
+      navigate(-1)
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        alert(error.response.data.message)
       } else {
-        alert('Não foi possível cadastrar o prato.');
+        alert('Não foi possível cadastrar o prato.')
       }
     } finally {
       setLoading(false)
     }
-  }
+	}
 
   return (
     <Container>
-      {!isDesktop &&
+      {!isDesktop && 
         <Menu 
-        isAdmin={isAdmin} 
-        isDisabled={true} 
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
-      />
+          isAdmin={isAdmin} 
+          isDisabled={true} 
+          isMenuOpen={isMenuOpen} 
+          setIsMenuOpen={setIsMenuOpen} 
+        />
       }
 
       <Header 
@@ -134,7 +134,7 @@ export function New({ isAdmin }) {
           <header>
             <ButtonText onClick={handleBack}>
               <RxCaretLeft />
-              Voltar
+              voltar
             </ButtonText>
 
             <h1>Adicionar prato</h1>
@@ -145,11 +145,11 @@ export function New({ isAdmin }) {
               <Image className='image'>
                 <label htmlFor='image'>
                   <FiUpload size={'2.4rem'} />
-                  <span>{fileName || "Selecione imagem"}</span>
+                  <span>{fileName || 'Selecione imagem'}</span>
 
-                  <Input
+                  <input 
+                    id='image' 
                     type='file'
-                    id='image'
                     onChange={handleImageChange}
                   />
                 </label>
@@ -158,7 +158,7 @@ export function New({ isAdmin }) {
 
             <Section title='Nome'>
               <Input className='name'
-                placeholder="Ex.: Salada Ceasar"
+                placeholder='Ex.: Salada Ceasar'
                 type='text'
                 value={name}
                 onChange={e => setName(e.target.value)}
@@ -168,7 +168,7 @@ export function New({ isAdmin }) {
             <Section title='Categoria'>
               <Category className='category'>
                 <label htmlFor='category'>
-                <select 
+                  <select 
                     id='category' 
                     value={category}
                     onChange={e => setCategory(e.target.value)}
@@ -200,7 +200,7 @@ export function New({ isAdmin }) {
 
                 <FoodItem
                   isNew
-                  placeholder="Adicionar"
+                  placeholder='Adicionar'
                   onChange={(e) => setNewTag(e.target.value)}
                   value={newTag}
                   onClick={handleAddTag}
@@ -210,7 +210,7 @@ export function New({ isAdmin }) {
 
             <Section title='Preço'>
               <Input className='price'
-                placeholder='R$ 00,00'
+                placeholder='R$ 00,00' 
                 type='number'
                 value={price}
                 onChange={e => setPrice(e.target.value)}
@@ -219,14 +219,14 @@ export function New({ isAdmin }) {
           </div>
 
           <Section title='Descrição'>
-            <Textarea
-              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+            <Textarea 
+              placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
               onChange={(e) => setDescription(e.target.value)}
             />
           </Section>
 
-          <div className='buttons'>
-            <Button className='save'
+          <div className='save'>
+            <Button
               title='Salvar alterações'
               onClick={handleNewDish}
               loading={loading}
@@ -234,7 +234,7 @@ export function New({ isAdmin }) {
           </div>
         </Form>
       </main>
-
+      
       <Footer />
     </Container>
   )

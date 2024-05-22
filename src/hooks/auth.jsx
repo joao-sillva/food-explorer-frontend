@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { api } from '../services/api'
-import jwtDecode from "jwt-decode"
+import { jwtDecode } from 'jwt-decode'
 
 export const AuthContext = createContext({})
 
@@ -8,28 +8,28 @@ function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
   function signOut() {
-    localStorage.removeItem("@foodexplorer:token")
-    localStorage.removeItem("@foodexplorer:user")
+    localStorage.removeItem('@foodexplorer:token')
+    localStorage.removeItem('@foodexplorer:user')
 
     setData({})
   }
 
   function isUserAuthenticated() {
-    const user = localStorage.getItem("@foodexplorer:user");
+    const user = localStorage.getItem('@foodexplorer:user')
 
     if (!user) {
-      return false;
+      return false
     }
 
-    const token = localStorage.getItem("@foodexplorer:token");
-    const tokenExpiration = jwtDecode(token).exp;
-    const currentTime = Math.floor(Date.now() / 1000);
+    const token = localStorage.getItem('@foodexplorer:token')
+    const tokenExpiration = jwtDecode(token).exp
+    const currentTime = Math.floor(Date.now() / 1000)
 
     if (tokenExpiration < currentTime) {
-      return false;
+      return false
     }
 
-    return true;
+    return true
   }  
 
   async function signIn({ email, password }) {
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
     const user = localStorage.getItem('@foodexplorer:user')
 
     if (token && user) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       setData({
         token,
@@ -81,6 +81,7 @@ function AuthProvider({ children }) {
 
 function useAuth() {
   const context = useContext(AuthContext)
+
   return context
 }
 

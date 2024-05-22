@@ -1,7 +1,7 @@
 import { Container } from './styles'
 import { FiMinus, FiPlus } from 'react-icons/fi'
 
-export function NumberPicker({ Number, setNumber }) {
+export function NumberPicker({ number, setNumber }) {
   const incrementNumber = () => {
     setNumber(number + 1)
   }

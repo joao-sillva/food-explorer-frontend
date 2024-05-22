@@ -1,22 +1,23 @@
 import { useState, useEffect } from 'react'
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from 'react-responsive'
 import { useParams, useNavigate } from 'react-router-dom'
-import { api } from '../../services/api'
 
 import { RxCaretLeft } from 'react-icons/rx'
 import { FiUpload } from 'react-icons/fi'
 import { RiArrowDownSLine } from 'react-icons/ri'
 
-import { Container, Form, Image, Category } from './styles';
-import { Menu } from '../../components/Menu';
-import { Header } from '../../components/Header';
-import { ButtonText } from '../../components/ButtonText';
-import { Section } from '../../components/Section';
-import { Input } from '../../components/Input';
-import { FoodItem } from '../../components/FoodItem';
-import { Textarea } from '../../components/Textarea';
-import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
+import { api } from '../../services/api'
+
+import { Container, Form, Image, Category } from './styles'
+import { Menu } from '../../components/Menu'
+import { Header } from '../../components/Header'
+import { ButtonText } from '../../components/ButtonText'
+import { Section } from '../../components/Section'
+import { Input } from '../../components/Input'
+import { FoodItem } from '../../components/FoodItem'
+import { Textarea } from '../../components/Textarea'
+import { Button } from '../../components/Button'
+import { Footer } from '../../components/Footer'
 
 export function Edit({ isAdmin }) {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
@@ -53,8 +54,8 @@ export function Edit({ isAdmin }) {
         console.error(error)
       }
     }
-
-    fetchDish();
+    
+    fetchDish()
   }, [params.id])
 
   useEffect(() => {
@@ -65,11 +66,11 @@ export function Edit({ isAdmin }) {
       setCategory(dish.category)
       setPrice(dish.price)
       setDescription(dish.description)
-
+  
       const allIngredients = dish.ingredients.map((ingredient) => ingredient.name)
       setTags(allIngredients)
     }
-  }, [dish])
+  }, [dish])  
 
   function handleImageChange(e) {
     const file = e.target.files[0]
@@ -80,7 +81,7 @@ export function Edit({ isAdmin }) {
 
   function handleAddTag() {
     setTags((prevState) => [...prevState, newTag])
-    setNewTag("");
+    setNewTag('')
   }
 
   function handleRemoveTag(deleted) {
@@ -127,69 +128,69 @@ export function Edit({ isAdmin }) {
         price: price,
         description: description,
         ingredients: tags,
-      };
-
+      }
+  
       if (image) {
-        const formData = new FormData();
-        formData.append('image', image);
-
+        const formData = new FormData()
+        formData.append('image', image)
+  
         await api.patch(`/dishes/${params.id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        })
       }
-
-      await api.patch(`/dishes/${params.id}`, updatedDish);
-
-      alert('Prato atualizado com sucesso!');
-      navigate(-1);
+  
+      await api.patch(`/dishes/${params.id}`, updatedDish)
+  
+      alert('Prato atualizado com sucesso!')
+      navigate(-1)
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        alert(error.response.data.message)
       } else {
-        alert('Não foi possível atualizar o prato.');
+        alert('Não foi possível atualizar o prato.')
       }
     } finally {
       setLoading(false)
     }
-  }
+	}
 
   async function handleRemoveDish() {
-    const confirm = window.confirm('Deseja realmente remover o prato?');
-
+    const confirm = window.confirm('Deseja realmente remover o prato?')
+  
     if (confirm) {
-      setLoading(true);
+      setLoading(true)
 
       try {
-        await api.delete(`/dishes/${params.id}`);
-        navigate("/")
+        await api.delete(`/dishes/${params.id}`)
+        navigate('/')
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          alert(error.response.data.message)
         } else {
-          alert("Não foi possível excluir o prato.");
+          alert('Não foi possível excluir o prato.')
         }
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     }
   }
 
   return (
     <Container>
-      {!isDesktop &&
-        <Menu
-          isAdmin={isAdmin}
-          isDisabled={true}
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
+      {!isDesktop && 
+        <Menu 
+          isAdmin={isAdmin} 
+          isDisabled={true} 
+          isMenuOpen={isMenuOpen} 
+          setIsMenuOpen={setIsMenuOpen} 
         />
       }
 
-      <Header
-        isAdmin={isAdmin}
-        isDisabled={true}
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
+      <Header 
+        isAdmin={isAdmin} 
+        isDisabled={true} 
+        isMenuOpen={isMenuOpen} 
+        setIsMenuOpen={setIsMenuOpen} 
       />
 
       <main>
@@ -204,53 +205,53 @@ export function Edit({ isAdmin }) {
           </header>
 
           <div>
-            <Section title="Imagem do prato">
-              <Image className="image">
-                <label htmlFor="image">
-                  <FiUpload size={"2.4rem"} />
-                  <span>{fileName || "Selecione imagem"}</span>
+            <Section title='Imagem do prato'>
+              <Image className='image'>
+                <label htmlFor='image'>
+                  <FiUpload size={'2.4rem'} />
+                  <span>{fileName || 'Selecione imagem'}</span>
 
-                  <input
-                    id="image"
-                    type="file"
+                  <input 
+                    id='image' 
+                    type='file'
                     onChange={handleImageChange}
                   />
                 </label>
               </Image>
             </Section>
 
-            <Section title="Nome">
-              <Input className="name"
-                placeholder="Ex.: Salada Ceasar"
-                type="text"
+            <Section title='Nome'>
+              <Input className='name'
+                placeholder='Ex.: Salada Ceasar'
+                type='text'
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
             </Section>
 
-            <Section title="Categoria">
-              <Category className="category">
-                <label htmlFor="category">
-                  <select
-                    id="category"
+            <Section title='Categoria'>
+              <Category className='category'>
+                <label htmlFor='category'>
+                  <select 
+                    id='category' 
                     value={category}
                     onChange={e => setCategory(e.target.value)}
                   >
-                    <option value="">Selecionar</option>
-                    <option value="meal">Refeição</option>
-                    <option value="dessert">Sobremesa</option>
-                    <option value="beverage">Bebida</option>
+                    <option value=''>Selecionar</option>
+                    <option value='meal'>Refeição</option>
+                    <option value='dessert'>Sobremesa</option>
+                    <option value='beverage'>Bebida</option>
                   </select>
 
-                  <RiArrowDownSLine size={"2.4rem"} />
+                  <RiArrowDownSLine size={'2.4rem'} />
                 </label>
               </Category>
             </Section>
           </div>
 
           <div>
-            <Section title="Ingredientes">
-              <div className="tags">
+            <Section title='Ingredientes'>
+              <div className='tags'>
                 {
                   tags.map((tag, index) => (
                     <FoodItem
@@ -263,7 +264,7 @@ export function Edit({ isAdmin }) {
 
                 <FoodItem
                   isNew
-                  placeholder="Adicionar"
+                  placeholder='Adicionar'
                   onChange={(e) => setNewTag(e.target.value)}
                   value={newTag}
                   onClick={handleAddTag}
@@ -271,43 +272,43 @@ export function Edit({ isAdmin }) {
               </div>
             </Section>
 
-            <Section title="Preço">
-              <Input className="price"
-                placeholder="R$ 00,00"
-                type="number"
+            <Section title='Preço'>
+              <Input className='price'
+                placeholder='R$ 00,00' 
+                type='number'
                 value={price}
                 onChange={e => setPrice(e.target.value)}
               />
             </Section>
           </div>
 
-          <Section title="Descrição">
-            <Textarea
-              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+          <Section title='Descrição'>
+            <Textarea 
+              placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
               defaultValue={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Section>
 
-          <div className="buttons">
-            <Button
-              className="delete"
-              title="Excluir prato"
-              onClick={handleRemoveDish}
+          <div className='buttons'>
+            <Button 
+              className='delete' 
+              title='Excluir prato' 
+              onClick={handleRemoveDish} 
               loading={loading}
             />
 
             <Button
-              className="save"
-              title="Salvar alterações"
+              className='save'
+              title='Salvar alterações'
               onClick={handleEditDish}
               loading={loading}
             />
           </div>
         </Form>
       </main>
-
+      
       <Footer />
     </Container>
-  );
+  )
 }

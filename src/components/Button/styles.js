@@ -2,21 +2,21 @@ import styled from 'styled-components'
 
 export const Container = styled.button`
   background: ${({ theme }) => theme.COLORS.DARK_RED};
-  color: ${({ theme }) => theme.COLORS.WHITE};
+  color: ${({ theme }) => theme.COLORS.WHITE};  
+  border: 0;
+  border-radius: 0.5rem;
   
   width: 100%;
   padding: 1.2rem 2.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   
-  border: none;
-  border-radius: .5rem;
-  position: relative;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
   line-height: 2.4rem;
+  position: relative;
 
   > span {
     position: absolute;
@@ -24,16 +24,16 @@ export const Container = styled.button`
     right: -0.6rem;
 
     background: ${({ theme }) => theme.COLORS.DARK_RED};
-    border-radius: 9.9rem;
-    padding-inline: .6rem;
+    border-radius: 99px;
+    padding-inline: 0.6rem;
   }
 
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   @media (min-width: 1024px) {
-    gap: .8rem;
+    gap: 0.8rem;
     padding: 1.2rem 3.2rem;
     
     > span {
