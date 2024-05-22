@@ -11,6 +11,9 @@ import { Food } from '../../components/Food'
 import { Menu } from '../../components/Menu'
 import { Section } from '../../components/Section'
 
+import bannerMobile from '../../assets/banner-mobile.png'
+import homeBanner from '../../assets/home-banner.png'
+
 register();
 
 export function Home({ isAdmin, user_id }) {
@@ -128,10 +131,7 @@ export function Home({ isAdmin, user_id }) {
         <div>
           <header>
             <img
-              src={isDesktop
-                ? "../../src/assets/home-banner.png"
-                : "../../src/assets/banner-mobile.png"
-              }
+              src={isDesktop ? homeBanner : bannerMobile} 
               alt="Macarons coloridos em tons pastel despencando juntamente com folhas verdes e frutas frescas."
             />
 

@@ -31,6 +31,7 @@ export function New({ isAdmin }) {
 
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
 
@@ -84,6 +85,8 @@ export function New({ isAdmin }) {
       return alert('Digite a descrição do prato.');
     }
 
+    setLoading(true)
+
     const formData = new FormData();
     formData.append('image', image);
     formData.append('name', name);
@@ -103,6 +106,8 @@ export function New({ isAdmin }) {
       } else {
         alert('Não foi possível cadastrar o prato.');
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -224,6 +229,7 @@ export function New({ isAdmin }) {
             <Button className='save'
               title='Salvar alterações'
               onClick={handleNewDish}
+              loading={loading}
             />
           </div>
         </Form>

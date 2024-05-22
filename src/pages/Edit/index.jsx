@@ -35,6 +35,7 @@ export function Edit({ isAdmin }) {
 
   const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const params = useParams()
   const navigate = useNavigate()
@@ -117,6 +118,8 @@ export function Edit({ isAdmin }) {
       return alert('Digite a descrição do prato.')
     }
 
+    setLoading(true)
+
     try {
       const updatedDish = {
         name: name,
@@ -145,6 +148,8 @@ export function Edit({ isAdmin }) {
       } else {
         alert('Não foi possível atualizar o prato.');
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -152,27 +157,39 @@ export function Edit({ isAdmin }) {
     const confirm = window.confirm('Deseja realmente remover o prato?');
 
     if (confirm) {
-      await api.delete(`/dishes/${params.id}`);
-      navigate(-1);
+      setLoading(true);
+
+      try {
+        await api.delete(`/dishes/${params.id}`);
+        navigate(-1);
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert("Não foi possível excluir o prato.");
+        }
+      } finally {
+        setLoading(false);
+      }
     }
   }
 
   return (
     <Container>
       {!isDesktop &&
-        <Menu 
-        isAdmin={isAdmin} 
-        isDisabled={true} 
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
-      />
+        <Menu
+          isAdmin={isAdmin}
+          isDisabled={true}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
       }
 
-      <Header 
-        isAdmin={isAdmin} 
-        isDisabled={true} 
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
+      <Header
+        isAdmin={isAdmin}
+        isDisabled={true}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
       />
 
       <main>
@@ -277,12 +294,14 @@ export function Edit({ isAdmin }) {
               className="delete"
               title="Excluir prato"
               onClick={handleRemoveDish}
+              loading={loading}
             />
 
             <Button
               className="save"
               title="Salvar alterações"
               onClick={handleEditDish}
+              loading={loading}
             />
           </div>
         </Form>
