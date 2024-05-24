@@ -1,8 +1,3 @@
-> Há um erro de renderização de imagem, tópico foi criado no fórum da comunidade sobre o problema e aguardando retorno de como resolver-lo. Fora isso, restante da aplicação está funcionando. Link do tópico: https://app.rocketseat.com.br/h/forum/explorer/7b6aefec-52d8-44cd-84fb-e1cb0d28b35e
-
-<br>
-<br>
-
 <a name="readme-top"></a>
 
 <div align="center">
